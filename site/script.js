@@ -11,10 +11,10 @@ const clear_button = document.getElementById("clear_button")
 
 
 var comments = [];
-function Comment(text, start_time, duration) {
+function Comment(text, start_time, end_time) {
     this.text = text;
     this.start_time = start_time;
-    this.duration = duration;
+    this.end_time = end_time;
 }
 //  Could use this type of datastructure.
 //  Rather use an array first
@@ -24,8 +24,8 @@ function Comment(text, start_time, duration) {
 //     this.element = element;
 // }
 
-function markComment(text, start_time,duration) {
-    var comment = new Comment(text, start_time,duration);
+function markComment(text, start_time,end_time) {
+    var comment = new Comment(text, start_time,end_time);
     comments.push(comment);
 }
 
@@ -81,7 +81,7 @@ function add() {
     //if(is_singlepoint)
     out("To: " + to);
     out("From: " + from);
-    markComment(to,from,comment);
+    markComment(comment,from,to)
     clear();
 
 
@@ -146,3 +146,4 @@ audio.src = "testfiles/test_chopin.mp3"
 var audio_container = document.getElementById("audioContainer");
 audio.controls = true;
 audio_container.appendChild(audio);
+
