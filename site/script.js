@@ -9,6 +9,26 @@ const comment_field = document.getElementById("comment_field");
 const add_button = document.getElementById("add_button");
 const clear_button = document.getElementById("clear_button")
 
+
+var comments = [];
+function Comment(text, start_time, duration) {
+    this.text = text;
+    this.start_time = start_time;
+    this.duration = duration;
+}
+//  Could use this type of datastructure.
+//  Rather use an array first
+// function Node(next, previous, element) {
+//     this.next = next;
+//     this.previous = previous;
+//     this.element = element;
+// }
+
+function markComment(text, start_time,duration) {
+    var comment = new Comment(text, start_time,duration);
+    comments.push(comment);
+}
+
 //  Handler functions
 //
 
@@ -25,6 +45,7 @@ function clear() {
 function add() {
     var from = from_field.value;
     var to = to_field.value;
+    var comment = comment_field.value;
     var is_singlepoint = false;
 
     if(from == "") {
@@ -60,6 +81,7 @@ function add() {
     //if(is_singlepoint)
     out("To: " + to);
     out("From: " + from);
+    markComment(to,from,comment);
     clear();
 
 
@@ -117,24 +139,6 @@ function addComment() {
 
 // Comment structure in memory
 //
-var comments = [];
-function Comment(text, start_time, duration) {
-    this.text = text;
-    this.start_time = start_time;
-    this.duration = duration;
-}
-//  Could use this type of datastructure.
-//  Rather use an array first
-// function Node(next, previous, element) {
-//     this.next = next;
-//     this.previous = previous;
-//     this.element = element;
-// }
-
-function markComment(text, start_time,duration) {
-    var comment = new Comment(text, start_time,duration);
-    comments.push(comment);
-}
 
 //  Module 1
 var audio = document.createElement("AUDIO");
