@@ -25,24 +25,44 @@ function clear() {
 function add() {
     var from = from_field.value;
     var to = to_field.value;
+    var is_singlepoint = false;
+
     if(from == "") {
         //  Error message handle this.
-        out("No text in null, ignore")
+        out("No text in from, ignore")
         return;
     } else if(to == "") {
         //  Error handle this in some good
-        out("No text in to, returning");
+        out("No text in to, that's okay");
+        is_singlepoint = true;
+    }
+    from = parseTime(from);
+    if(typeof from === 'string' || from instanceof String) {
+        out(from);
         return;
     }
-
-    from = parseTime(from);
-    console.log(from);
-    to = parseTime(to);
-    console.log(to);
-    if(to == -1 || from == -1) {
-        //"Error here too, break"
-        out("Error -1");
+    if(is_singlepoint) {
+        to = from;
+    } else {
+        to = parseTime(to);
+        if(typeof to === 'string' || to instanceof String) {
+            out(to);
+            return;
+        }
     }
+
+
+    if(to < from) {
+        out("to is not supposed to be smaller than from to < from");
+        return;
+    }
+    //  Error checked should work, do the thing now.
+    //if(is_singlepoint)
+    out("To: " + to);
+    out("From: " + from);
+    clear();
+
+
 }
 
 
@@ -62,18 +82,25 @@ function parseTime(time) {
 
         }
         //  harcoding this shit
-        var time_unit = parseInt(time_array[0]);
+
         var factor = 2;
 
         for(var i = 0; i < 3; i++) {
             var time_unit = parseInt(time_array[i]);
             if(Number.isNaN(time_unit)) return "Illegal symbols.";
-            if(i > 0) {
-
+            if(time_unit < 0) {
+                return "Less than 0 error.";
             }
+            if(i > 0) {
+                if(time_unit > 59) return "More than 59 error ";
+            }
+            seconds += time_unit * Math.pow(60,factor);
+            factor--;
+
 
         }
-        console.log("split");
+
+        return seconds;
     } else {
         //  Parse seconds
         console.log("!split");
