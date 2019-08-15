@@ -1,0 +1,37 @@
+#bookmarks {
+  display: flex;
+  /* background-color: blue; */
+  width: 70%;
+}
+
+#bookmark_list {
+  display: flex;
+  flex-direction: column;
+  /* background-color: yellow; */
+  width: 70%;
+}
+
+.list_element {
+  /* background-color: blue; */
+  /* color: red; */
+  margin: 2px;
+  margin-left: 0px;
+  border-style: solid;
+  border-width: thin;
+  display: flex;
+  width: 100%; // risky
+}
+
+.time {
+  background-color: #edf0ed;
+  width: 50%;
+  border-right-width: thin;
+  border-right-color: black;
+  border-right-style: solid;
+}
+
+.description {
+  background-color: #edf0ed;
+
+  width: 50%;
+}
