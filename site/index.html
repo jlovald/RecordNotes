@@ -7,8 +7,19 @@
 
   </head>
   <body>
+      <div id="upload">
+          <div id="upload_box">
+              No audio files uploaded, drag one here to upload one now.
+              <input type="file" id="fileElem" multiple accept="audio/*,text/plain" onchange="handleFiles(this.files)">
+              <!-- <label class="button" for="fileElem">Select some files</label> -->
+              <ul id="file_list">
+                  &times;
+              </ul>
+          </div>
+      </div>
 
       <div id="audioContainer">
+
           <div id="input">
 
                   <input type="text" id="from_field" placeholder="From in seconds or HH:MM:SS">
@@ -41,6 +52,7 @@
       </script>
 
       <script src="script.js"></script>
+      <script src="upload.js"></script>
     <!-- page content -->
   </body>
 </html>
