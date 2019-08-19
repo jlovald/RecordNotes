@@ -9,9 +9,27 @@ const comment_field = document.getElementById("comment_field");
 const add_button = document.getElementById("add_button");
 const clear_button = document.getElementById("clear_button")
 
-
+var id_counter = 0;
 var comments = [];
+var list_head = null;
+
+
+function removeComment(id) {
+  for(var i = 0; i < comments.length; i++) {
+    if(id == comments[id]) {
+      arr.splice(i,1);
+    }
+  }
+}
+
+function Node(comment, previous, next) {
+  id_counter++;
+  this.comment = comment;
+  this.previous = previous;
+  this.next = next;
+}
 function Comment(text, start_time, end_time) {
+    this.id = id_counter++;
     this.text = text;
     this.start_time = start_time;
     this.end_time = end_time;
@@ -145,5 +163,11 @@ var audio = document.createElement("AUDIO");
 audio.src = "testfiles/test_chopin.mp3"
 var audio_container = document.getElementById("audioContainer");
 audio.controls = true;
-audio_container.appendChild(audio);
+//audio_container.appendChild(audio);
 
+var wavesurfer = WaveSurfer.create({
+    container: '#waveform',
+    waveColor: 'violet',
+    progressColor: 'purple'
+});
+wavesurfer.load(audio);

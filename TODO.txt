@@ -1,0 +1,7 @@
+TODO:
+Refactor to use a linked list?, no bad idea.
+
+Add functionality for removing comments []
+Add functionality for removing comments from DOM by clicking x []
+
+Add waveform (wavesurfer.js) with looping. []
